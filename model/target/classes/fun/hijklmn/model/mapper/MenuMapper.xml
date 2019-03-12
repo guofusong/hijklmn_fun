@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.hijklmn.model.mapper.MenuMapper">
+  <resultMap id="BaseResultMap" type="fun.hijklmn.model.pojo.Menu">
+    <id column="menu_id" jdbcType="VARCHAR" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="request_url" jdbcType="VARCHAR" property="requestUrl" />
+    <result column="sort_index" jdbcType="TINYINT" property="sortIndex" />
+    <result column="is_valid" jdbcType="INTEGER" property="isValid" />
+    <result column="attribute1" jdbcType="VARCHAR" property="attribute1" />
+    <result column="attribute2" jdbcType="VARCHAR" property="attribute2" />
+    <result column="attribute3" jdbcType="VARCHAR" property="attribute3" />
+    <result column="attribute4" jdbcType="VARCHAR" property="attribute4" />
+    <result column="attribute5" jdbcType="VARCHAR" property="attribute5" />
+    <result column="attribute6" jdbcType="VARCHAR" property="attribute6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    menu_id, menu_name, parent_id, request_url, sort_index, is_valid, attribute1, attribute2, 
+    attribute3, attribute4, attribute5, attribute6
+  </sql>
+  
+  <sql id="base_where">
+  	<where>
+		<if test="menuName != null">
+	  		and menu_name = #{menuName,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="parentId != null">
+	  		and parent_id = #{parentId,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="isValid != null">
+	  		and is_valid = #{isValid,jdbcType=INTEGER}
+	  	</if>  	
+  	</where>
+  </sql>
+  
+  <select id="listMenu" parameterType="fun.hijklmn.model.pojo.Menu" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from menu
+  	<if test="_parameter != null">
+  		<include refid="base_where" />
+  	</if>
+  	order by 
+  	sort_index asc
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from menu
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="fun.hijklmn.model.pojo.Menu">
+    insert into menu (menu_id, menu_name, parent_id, 
+      request_url, sort_index, is_valid, 
+      attribute1, attribute2, attribute3, 
+      attribute4, attribute5, attribute6
+      )
+    values (#{menuId,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, 
+      #{requestUrl,jdbcType=VARCHAR}, #{sortIndex,jdbcType=TINYINT}, #{isValid,jdbcType=INTEGER}, 
+      #{attribute1,jdbcType=VARCHAR}, #{attribute2,jdbcType=VARCHAR}, #{attribute3,jdbcType=VARCHAR}, 
+      #{attribute4,jdbcType=VARCHAR}, #{attribute5,jdbcType=VARCHAR}, #{attribute6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="fun.hijklmn.model.pojo.Menu">
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="menuId != null">
+        menu_id,
+      </if>
+      <if test="menuName != null">
+        menu_name,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="requestUrl != null">
+        request_url,
+      </if>
+      <if test="sortIndex != null">
+        sort_index,
+      </if>
+      <if test="isValid != null">
+        is_valid,
+      </if>
+      <if test="attribute1 != null">
+        attribute1,
+      </if>
+      <if test="attribute2 != null">
+        attribute2,
+      </if>
+      <if test="attribute3 != null">
+        attribute3,
+      </if>
+      <if test="attribute4 != null">
+        attribute4,
+      </if>
+      <if test="attribute5 != null">
+        attribute5,
+      </if>
+      <if test="attribute6 != null">
+        attribute6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="menuId != null">
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestUrl != null">
+        #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sortIndex != null">
+        #{sortIndex,jdbcType=TINYINT},
+      </if>
+      <if test="isValid != null">
+        #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="attribute1 != null">
+        #{attribute1,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute2 != null">
+        #{attribute2,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute3 != null">
+        #{attribute3,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute4 != null">
+        #{attribute4,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute5 != null">
+        #{attribute5,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute6 != null">
+        #{attribute6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="fun.hijklmn.model.pojo.Menu">
+    update menu
+    <set>
+      <if test="menuName != null">
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestUrl != null">
+        request_url = #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sortIndex != null">
+        sort_index = #{sortIndex,jdbcType=TINYINT},
+      </if>
+      <if test="isValid != null">
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="attribute1 != null">
+        attribute1 = #{attribute1,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute2 != null">
+        attribute2 = #{attribute2,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute3 != null">
+        attribute3 = #{attribute3,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute4 != null">
+        attribute4 = #{attribute4,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute5 != null">
+        attribute5 = #{attribute5,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute6 != null">
+        attribute6 = #{attribute6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="fun.hijklmn.model.pojo.Menu">
+    update menu
+    set menu_name = #{menuName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=VARCHAR},
+      request_url = #{requestUrl,jdbcType=VARCHAR},
+      sort_index = #{sortIndex,jdbcType=TINYINT},
+      is_valid = #{isValid,jdbcType=INTEGER},
+      attribute1 = #{attribute1,jdbcType=VARCHAR},
+      attribute2 = #{attribute2,jdbcType=VARCHAR},
+      attribute3 = #{attribute3,jdbcType=VARCHAR},
+      attribute4 = #{attribute4,jdbcType=VARCHAR},
+      attribute5 = #{attribute5,jdbcType=VARCHAR},
+      attribute6 = #{attribute6,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </update>
+</mapper>

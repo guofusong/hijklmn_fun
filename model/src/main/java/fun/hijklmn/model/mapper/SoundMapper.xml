@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.hijklmn.model.mapper.SoundMapper">
+  <resultMap id="BaseResultMap" type="fun.hijklmn.model.pojo.Sound">
+    <id column="sou_id" jdbcType="VARCHAR" property="souId" />
+    <result column="sound_name" jdbcType="VARCHAR" property="soundName" />
+    <result column="sound_type" jdbcType="VARCHAR" property="soundType" />
+    <result column="sound_top_pic" jdbcType="VARCHAR" property="soundTopPic" />
+    <result column="sound_url" jdbcType="VARCHAR" property="soundUrl" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="online_time" jdbcType="TIMESTAMP" property="onlineTime" />
+    <result column="favorite" jdbcType="INTEGER" property="favorite" />
+    <result column="favorite_ip" jdbcType="VARCHAR" property="favoriteIp" />
+    <result column="is_valid" jdbcType="TINYINT" property="isValid" />
+    <result column="attribute1" jdbcType="VARCHAR" property="attribute1" />
+    <result column="attribute2" jdbcType="VARCHAR" property="attribute2" />
+    <result column="attribute3" jdbcType="VARCHAR" property="attribute3" />
+    <result column="attribute4" jdbcType="VARCHAR" property="attribute4" />
+    <result column="attribute5" jdbcType="VARCHAR" property="attribute5" />
+    <result column="attribute6" jdbcType="VARCHAR" property="attribute6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sou_id, sound_name, sound_type, sound_top_pic, sound_url, author, source, content, 
+    online_time, favorite, favorite_ip, is_valid, attribute1, attribute2, attribute3, 
+    attribute4, attribute5, attribute6
+  </sql>
+  
+  <sql id="base_where">
+  	<where>
+  		<if test="soundName != null">
+	        and sound_name = #{soundName,jdbcType=VARCHAR}
+	    </if>
+	    <if test="soundType != null">
+	        and sound_type = #{soundType,jdbcType=VARCHAR}
+	    </if>
+	    <if test="soundTopPic != null">
+	        and sound_top_pic = #{soundTopPic,jdbcType=VARCHAR}
+	    </if>
+	    <if test="soundUrl != null">
+	        and sound_url = #{soundUrl,jdbcType=VARCHAR}
+	    </if>
+	    <if test="author != null">
+	        and author = #{author,jdbcType=VARCHAR}
+	    </if>
+	    <if test="source != null">
+	        and source = #{source,jdbcType=VARCHAR}
+	    </if>
+	    <if test="content != null">
+	        and content = #{content,jdbcType=VARCHAR}
+	    </if>
+	    <if test="onlineTime != null">
+	        and online_time = #{onlineTime,jdbcType=TIMESTAMP}
+	    </if>
+	    <if test="favorite != null">
+	        and favorite = #{favorite,jdbcType=INTEGER}
+	    </if>
+	    <if test="favoriteIp != null">
+	        and favorite_ip = #{favoriteIp,jdbcType=VARCHAR}
+	    </if>
+	    <if test="isValid != null">
+	        and is_valid = #{isValid,jdbcType=TINYINT}
+	    </if>
+	    <if test="attribute1 != null">
+	        and attribute1 = #{attribute1,jdbcType=VARCHAR}
+	    </if>
+	    <if test="attribute2 != null">
+	        and attribute2 = #{attribute2,jdbcType=VARCHAR}
+	    </if>
+	    <if test="attribute3 != null">
+	        and attribute3 = #{attribute3,jdbcType=VARCHAR}
+	    </if>
+	    <if test="attribute4 != null">
+	        and attribute4 = #{attribute4,jdbcType=VARCHAR}
+	    </if>
+	    <if test="attribute5 != null">
+	        and attribute5 = #{attribute5,jdbcType=VARCHAR}
+	    </if>
+	    <if test="attribute6 != null">
+	        and attribute6 = #{attribute6,jdbcType=VARCHAR}
+	    </if>
+  	</where>
+  </sql>
+
+  <!-- 查询声音 -->
+  <select id="listSound" parameterType="fun.hijklmn.model.pojo.Sound" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from sound
+  	<if test="_parameter != null">
+  		<include refid="base_where"></include>
+  	</if>
+  	order by online_time desc
+  </select>
+  
+  <!-- 查询声音分页 -->
+  <select id="listSoundPage" parameterType="fun.hijklmn.model.dto.DocumentQueryDTO" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from sound
+  	<if test="_parameter != null">
+  		<include refid="base_where"></include>
+  	</if>
+  	<if test="sort != null">
+  		order by ${sort}
+  	</if>
+  	<if test="index != null">
+  		<if test="size != null">
+  			limit #{index,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
+  		</if>
+  	</if>
+  </select>
+  
+  <!-- 查询声音总数 -->
+  <select id="listSoundPageCount" parameterType="fun.hijklmn.model.dto.DocumentQueryDTO" resultType="java.lang.Integer">
+  	select
+  	count(1)
+  	from sound
+  	<if test="_parameter != null">
+  		<include refid="base_where"></include>
+  	</if>
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sound
+    where sou_id = #{souId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sound
+    where sou_id = #{souId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="fun.hijklmn.model.pojo.Sound">
+    insert into sound (sou_id, sound_name, sound_type, 
+      sound_top_pic, sound_url, author, 
+      source, content, online_time, 
+      favorite, favorite_ip, is_valid, 
+      attribute1, attribute2, attribute3, 
+      attribute4, attribute5, attribute6
+      )
+    values (#{souId,jdbcType=VARCHAR}, #{soundName,jdbcType=VARCHAR}, #{soundType,jdbcType=VARCHAR}, 
+      #{soundTopPic,jdbcType=VARCHAR}, #{soundUrl,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{onlineTime,jdbcType=TIMESTAMP}, 
+      #{favorite,jdbcType=INTEGER}, #{favoriteIp,jdbcType=VARCHAR}, #{isValid,jdbcType=TINYINT}, 
+      #{attribute1,jdbcType=VARCHAR}, #{attribute2,jdbcType=VARCHAR}, #{attribute3,jdbcType=VARCHAR}, 
+      #{attribute4,jdbcType=VARCHAR}, #{attribute5,jdbcType=VARCHAR}, #{attribute6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="fun.hijklmn.model.pojo.Sound">
+    insert into sound
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="souId != null">
+        sou_id,
+      </if>
+      <if test="soundName != null">
+        sound_name,
+      </if>
+      <if test="soundType != null">
+        sound_type,
+      </if>
+      <if test="soundTopPic != null">
+        sound_top_pic,
+      </if>
+      <if test="soundUrl != null">
+        sound_url,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="onlineTime != null">
+        online_time,
+      </if>
+      <if test="favorite != null">
+        favorite,
+      </if>
+      <if test="favoriteIp != null">
+        favorite_ip,
+      </if>
+      <if test="isValid != null">
+        is_valid,
+      </if>
+      <if test="attribute1 != null">
+        attribute1,
+      </if>
+      <if test="attribute2 != null">
+        attribute2,
+      </if>
+      <if test="attribute3 != null">
+        attribute3,
+      </if>
+      <if test="attribute4 != null">
+        attribute4,
+      </if>
+      <if test="attribute5 != null">
+        attribute5,
+      </if>
+      <if test="attribute6 != null">
+        attribute6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="souId != null">
+        #{souId,jdbcType=VARCHAR},
+      </if>
+      <if test="soundName != null">
+        #{soundName,jdbcType=VARCHAR},
+      </if>
+      <if test="soundType != null">
+        #{soundType,jdbcType=VARCHAR},
+      </if>
+      <if test="soundTopPic != null">
+        #{soundTopPic,jdbcType=VARCHAR},
+      </if>
+      <if test="soundUrl != null">
+        #{soundUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineTime != null">
+        #{onlineTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="favorite != null">
+        #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="favoriteIp != null">
+        #{favoriteIp,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null">
+        #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="attribute1 != null">
+        #{attribute1,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute2 != null">
+        #{attribute2,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute3 != null">
+        #{attribute3,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute4 != null">
+        #{attribute4,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute5 != null">
+        #{attribute5,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute6 != null">
+        #{attribute6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="fun.hijklmn.model.pojo.Sound">
+    update sound
+    <set>
+      <if test="soundName != null">
+        sound_name = #{soundName,jdbcType=VARCHAR},
+      </if>
+      <if test="soundType != null">
+        sound_type = #{soundType,jdbcType=VARCHAR},
+      </if>
+      <if test="soundTopPic != null">
+        sound_top_pic = #{soundTopPic,jdbcType=VARCHAR},
+      </if>
+      <if test="soundUrl != null">
+        sound_url = #{soundUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineTime != null">
+        online_time = #{onlineTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="favorite != null">
+        favorite = #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="favoriteIp != null">
+        favorite_ip = #{favoriteIp,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null">
+        is_valid = #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="attribute1 != null">
+        attribute1 = #{attribute1,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute2 != null">
+        attribute2 = #{attribute2,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute3 != null">
+        attribute3 = #{attribute3,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute4 != null">
+        attribute4 = #{attribute4,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute5 != null">
+        attribute5 = #{attribute5,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute6 != null">
+        attribute6 = #{attribute6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sou_id = #{souId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="fun.hijklmn.model.pojo.Sound">
+    update sound
+    set sound_name = #{soundName,jdbcType=VARCHAR},
+      sound_type = #{soundType,jdbcType=VARCHAR},
+      sound_top_pic = #{soundTopPic,jdbcType=VARCHAR},
+      sound_url = #{soundUrl,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      online_time = #{onlineTime,jdbcType=TIMESTAMP},
+      favorite = #{favorite,jdbcType=INTEGER},
+      favorite_ip = #{favoriteIp,jdbcType=VARCHAR},
+      is_valid = #{isValid,jdbcType=TINYINT},
+      attribute1 = #{attribute1,jdbcType=VARCHAR},
+      attribute2 = #{attribute2,jdbcType=VARCHAR},
+      attribute3 = #{attribute3,jdbcType=VARCHAR},
+      attribute4 = #{attribute4,jdbcType=VARCHAR},
+      attribute5 = #{attribute5,jdbcType=VARCHAR},
+      attribute6 = #{attribute6,jdbcType=VARCHAR}
+    where sou_id = #{souId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,33 @@
+		.return{
+			position: fixed;
+			z-index: 10;
+			width:40px;
+			height:40px;
+			border-radius: 50%;      
+			-moz-border-radius: 50%;      
+			-webkit-border-radius: 50%;
+			background: #343a40;
+			top:120px;
+			right:40px;
+			filter:alpha(opacity=80);
+			opacity:0.8;
+			padding-top: 7px;
+			padding-left: 12px; 
+		}
+
+		.user{
+			position: fixed;
+			z-index: 10;
+			width:40px;
+			height:40px;
+			border-radius: 50%;      
+			-moz-border-radius: 50%;      
+			-webkit-border-radius: 50%;
+			background: #343a40;
+			top:180px;
+			right:40px;
+			filter:alpha(opacity=80);
+			opacity:0.8;
+			padding-top: 6px;
+			padding-left: 17px;  
+		}

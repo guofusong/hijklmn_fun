@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Not Allow</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" th:href="@{/common/plugins/bootstrap/css/bootstrap.min.css}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" th:href="@{/common/plugins/font-awesome-4.7.0/css/font-awesome.min.css}" />
+  <!-- Ionicons -->
+  <link rel="stylesheet" th:href="@{/common/css/ionicons.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/common/css/AdminLTE.min.css}">
+
+</head>
+<body class="hold-transition lockscreen">
+<!-- Automatic element centering -->
+<div class="lockscreen-wrapper">
+  <div class="lockscreen-logo">
+    <a href="javascrit:void(0);"><b>Hijklmn</b>.Fun</a>
+  </div>
+  <div class="lockscreen-item">
+	<div class="lockscreen-image">
+    </div>
+  </div>
+  <div class="lockscreen-item">
+     <div class="input-group">
+		<div class="lockscreen-image">
+			<img th:src="@{/common/image/user2-160x160.jpg}" alt="User Image">
+	    </div>
+     </div>
+  </div>
+  <div class="lockscreen-footer text-center">
+   	<label>没有权限继续访问了！！</label><p><span onclick="window.location.href='/home'">首页</span> &nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;<span onclick="window.location.href='/user/signout'">退出登录</span></p>
+  </div>
+</div>
+
+<!-- jQuery 2.2.3 -->
+<script th:src="@{/common/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+</body>
+</html>

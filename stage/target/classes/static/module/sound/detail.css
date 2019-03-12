@@ -1,0 +1,41 @@
+.mini_player{
+	position: fixed;
+	z-index: 12;
+	top:100px;
+	right:30px;
+	width:60px;
+	height:60px;
+	border:5px gray solid;
+	border-radius: 50%;      
+	-moz-border-radius: 50%;      
+	-webkit-border-radius: 50%;
+}
+
+.mini_player_active{
+	position: fixed;
+	z-index: 12;
+	top:100px;
+	right:30px;
+	width:60px;
+	height:60px;
+	border:5px #17a2b8 solid;
+	border-radius: 50%;      
+	-moz-border-radius: 50%;      
+	-webkit-border-radius: 50%;
+}
+
+.mini_player img{
+	width:50px;
+	height:50px;
+	border-radius: 50%;      
+	-moz-border-radius: 50%;      
+	-webkit-border-radius: 50%;
+}
+
+.mini_player_active img{
+	width:50px;
+	height:50px;
+	border-radius: 50%;      
+	-moz-border-radius: 50%;      
+	-webkit-border-radius: 50%;
+}

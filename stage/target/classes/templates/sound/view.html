@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<title>声音浏览</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" th:href="@{/common/plugins/bootstrap/css/bootstrap.min.css}">
+	<link rel="shortcut icon" th:href="@{/common/image/panda_b_ico.ico}" type="x-icon">
+	<link rel="stylesheet" th:href="@{/module/sound/detail.css}">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+    	<label class="navbar-brand home"><font color="#ffc107"><strong>瞅瞅</strong></font></label>
+
+    	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      		<span class="navbar-toggler-icon"></span>
+    	</button>
+
+    	<div class="collapse navbar-collapse" id="navbarColor01">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<label class="nav-link document">文章</label>
+				</li>
+				<li class="nav-item">
+					<label class="nav-link sound"><font color="#ffc107">声音</font></label>
+				</li>			
+				<li class="nav-item">
+					<label class="nav-link me">我</label>
+				</li>
+			</ul>
+    	</div>
+	</nav>
+
+	<main role="main" class="container" style="padding-top:70px;">
+      
+      	<div id="player_info" class="mini_player">
+			<img th:src="@{/image/sound/7a80f7f620b8dcf9df8d919b3fcc755.jpg}">
+      	</div>
+      
+        <div class="row" id="content">
+
+			<div id="itemTemplate" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 item" style="display:none;">
+           		<div class="mb-2 shadow-sm">
+           			<div style="height:4.5em; width:100%; overflow:hidden;">
+           				<div style="width:4.5em; height:4.5em; padding:0.2em; float:left;">
+           					<img style="width:4.1em; height:4.1em;" alt="Head" th:src="@{/image/sound/7a80f7f620b8dcf9df8d919b3fcc755.jpg}">
+           					<audio id="miniPlayer" style="display:none;"></audio>
+           				</div>
+           				<div style="height:4.5em; padding:0.3em; float:left;">
+            				<h5><span class="blog-post-title title sound_name">传奇</span></h5>
+            				<span class="sound_author">王菲</span>
+           				</div>
+           			</div>
+           		</div>
+           	</div>
+
+           	<div id="loadMoreTemplate" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display:none;">
+           		<div class="mb-2 shadow-sm">
+             		<div class="card-body text-center">
+						<label class="blog-post-meta">加载更多</label>
+             		</div>
+           		</div>
+           	</div>
+
+   		</div>
+
+	</main>
+
+</body>
+
+<script th:src="@{/common/plugins/jQuery/jquery-3.3.1.min.js}" ></script>
+<script th:src="@{/common/plugins/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/common/plugins/bootstrap/js/popper.min.js}" ></script>
+<script th:src="@{/common/js/hijklmn.js}"></script>
+<script th:src="@{/module/sound/view.js}"></script>
+	<script th:inline="javascript">
+	
+	window.fun.start();
+
+	/*<![CDATA[*/
+		
+		
+	/*]]>*/
+	</script>
+</html>

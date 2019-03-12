@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<title>主页</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" th:href="@{/common/plugins/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/module/home/home.css}">
+	<link rel="shortcut icon" th:href="@{/common/image/panda_b_ico.ico}" type="x-icon">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-pills fixed-top">
+
+    	<label class="navbar-brand home"><font color="#ffc107"><strong>瞅瞅</strong></font></label>
+
+    	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      		<span class="navbar-toggler-icon"></span>
+    	</button>
+
+    	<div class="collapse navbar-collapse" id="navbarColor01">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<label class="nav-link document">文章</label>
+				</li>
+				<li class="nav-item">
+					<label class="nav-link sound">声音</label>
+				</li>			
+				<li class="nav-item">
+					<label class="nav-link me">我</label>
+				</li>
+			</ul>
+    	</div>
+    	
+	</nav>
+
+	<main role="main" class="container" style="padding-top:70px;">
+      
+		<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img class="d-block w-100" th:src="@{/image/home/banner_1.jpg}" alt="banner_1">
+				</div>
+				<div class="carousel-item">
+		      		<img class="d-block w-100" th:src="@{/image/home/banner_2.jpg}" alt="banner_2">
+		    	</div>
+		    	<div class="carousel-item">
+		      		<img class="d-block w-100" th:src="@{/image/home/banner_3.jpg}" alt="banner_3">
+		    	</div>
+		    	<div class="carousel-item">
+		      		<img class="d-block w-100" th:src="@{/image/home/banner_4.jpg}" alt="banner_4">
+		    	</div>
+			</div>
+		</div>
+		
+		<section class="text-center">
+			<div class="jumbotron container bg-white">
+				<h2 class="jumbotron-heading"><font color="#ffc107">嘿，来干撒子呢？</font></h2>
+				<p class="lead text-muted">这里有文章、图片、音乐、视频，还有隐藏了一些小东西，如果你感兴趣，自己找找看吧！</p>
+			</div>
+		</section>
+      
+        <div class="row">
+         
+      		<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+           		<div class="tm-content-box">
+                 	<img th:src="@{/image/home/introduce_d.jpg}" alt="Document" class="tm-margin-b-20 img-fluid">
+                 	<h5 class="tm-margin-b-20 tm-gold-text">文章</h5>
+                 	<p class="tm-margin-b-20">有时会从其他地方转载有意思的文章，也有可能会自己写。</p>
+                 	<button type="button" class="btn btn-info btn-sm document_btn">阅 读</button>
+             	</div>  
+          	</div>
+
+         	<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+             	<div class="tm-content-box">
+                 	<img th:src="@{/image/home/introduce_m.jpg}" alt="Picture" class="tm-margin-b-20 img-fluid">
+                 	<h5 class="tm-margin-b-20 tm-gold-text">图片</h5>
+                 	<p class="tm-margin-b-20">会展示一些美图，可能来自其他地方，比如微软必应。</p>
+                 	<button type="button" class="btn btn-success btn-sm">看 看</button>    
+             	</div>  
+          	</div>
+          
+         	<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+             	<div class="tm-content-box">
+                 	<img th:src="@{/image/home/introduce_p.jpg}" alt="Music" class="tm-margin-b-20 img-fluid">
+                 	<h5 class="tm-margin-b-20 tm-gold-text">音乐</h5>
+                 	<p class="tm-margin-b-20">好听的歌曲，各种风格都有，工作之余舒缓下紧张的心情。</p>
+                 	<button type="button" class="btn btn-info btn-sm sound_btn">欣 赏</button>  
+             	</div>  
+          	</div>
+          
+         	<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+             	<div class="tm-content-box">
+                 	<img th:src="@{/image/home/introduce_v.jpg}" alt="Video" class="tm-margin-b-20 img-fluid">
+                 	<h5 class="tm-margin-b-20 tm-gold-text">视频</h5>
+                 	<p class="tm-margin-b-20">带给你不同的视角、不同的观点、不同的世界。</p>
+                 	<button type="button" class="btn btn-primary btn-sm">感 受</button>  
+             	</div>  
+          	</div>
+           	
+		</div>
+   		
+   		<div class="top" style="margin-top:40px; margin-bottom:40px;">
+          	<div class="row">
+	   			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<h4 class="pb-3 mb-4 border-bottom">顶点</h4> 
+	        	</div>
+   		  	
+   		  		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pic_top">
+		             	<div class="tm-content-box">
+		                 	<img th:src="@{/image/home/top_m.jpg}" alt="Top picture" class="tm-margin-b-20 img-fluid">
+		             	</div>  
+		          	</div>
+
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pic_top">
+				      	<strong class="d-inline-block mb-2 text-primary">本周热图</strong>
+		              	<h5 class="mb-0">
+		                	<a class="text-dark" href="javascript:void(0);">激光追逐者</a>
+		              	</h5>
+		              	<div class="mb-1 text-muted">December 01</div>
+		              	<p class="card-text mb-auto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果你想要享受更好的北极光观赏体验，不妨前往加拿大纽芬兰岛的兰塞奥兹牧草地的诺斯蒂德维京村。在这里，那些采用木质墙壁和泥土地板的建筑以及古老的维京船，给维京时代的生活带来了魅力。在漆黑的冬夜，当天空没有光污染时，观星者可以看到令人叹为观止的北极光。当带电粒子从太阳进入地球大气层时，就会出现极光。而极光色彩和外观的变化，进一步增加了这种非凡的自然景观的美丽。</p>
+		              	<a th:href="@{https://cn.bing.com}">查看原图</a>
+					</div>
+					
+				</div>
+			</div>
+            
+		</div>
+   		
+	</main>
+
+	<footer class="text-muted">
+		<div class="container">
+       		<p>热烈欢迎！</p>
+		</div>
+   	</footer>
+  
+</body>
+
+
+<script th:src="@{/common/plugins/jQuery/jquery-3.3.1.min.js}" ></script>
+<script th:src="@{/common/plugins/bootstrap/js/bootstrap.min.js}" ></script>
+<script th:src="@{/common/plugins/bootstrap/js/popper.min.js}" ></script>
+<script th:src="@{/module/home/home.js}" ></script>
+<script th:inline="javascript">
+
+/*<![CDATA[*/
+	
+	window.fun.start();
+	
+/*]]>*/
+</script>
+</html>
