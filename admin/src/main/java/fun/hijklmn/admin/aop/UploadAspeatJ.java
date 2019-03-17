@@ -9,20 +9,15 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import fun.hijklmn.admin.common.ResponseUtils;
 import fun.hijklmn.admin.common.ResultVO;
 import fun.hijklmn.common.constants.RespEnum;
 
 @Aspect
 @Component
-public class UploadAspeatJ {
-
-	private final Logger logger = LoggerFactory.getLogger(UploadAspeatJ.class);
+public class UploadAspeatJ extends BaseAspectJ{
 
 	@Pointcut("execution(** fun.hijklmn.admin.controller.UploadController.ckUploadImage(..))")
 	public void ckUploadImage() {
@@ -50,14 +45,14 @@ public class UploadAspeatJ {
 
 			if (file == null || file.isEmpty()) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return;
 			}
 
 			String filename = file.getOriginalFilename();
 			if (filename.matches(".*^[^(mp4)]")) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return;
 			}
 
@@ -66,7 +61,7 @@ public class UploadAspeatJ {
 		} catch (Throwable e) {
 			logger.error("处理错误[{}]", e.getMessage());
 			resultVo.setCustomReason(RespEnum.SysErr.code(), RespEnum.SysErr.cnDesc());
-			ResponseUtils.outData(response, resultVo);
+			outData(response, resultVo);
 			return;
 		}
 	}
@@ -81,14 +76,14 @@ public class UploadAspeatJ {
 
 			if (file == null || file.isEmpty()) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return;
 			}
 
 			String filename = file.getOriginalFilename();
 			if (filename.matches(".*^[^(mp3)]")) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return;
 			}
 
@@ -97,7 +92,7 @@ public class UploadAspeatJ {
 		} catch (Throwable e) {
 			logger.error("处理错误[{}]", e.getMessage());
 			resultVo.setCustomReason(RespEnum.SysErr.code(), RespEnum.SysErr.cnDesc());
-			ResponseUtils.outData(response, resultVo);
+			outData(response, resultVo);
 			return;
 		}
 	}
@@ -112,14 +107,14 @@ public class UploadAspeatJ {
 
 			if (file == null || file.isEmpty()) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return;
 			}
 
 			String filename = file.getOriginalFilename();
 			if (filename.matches(".*^[^(png|jpg|jpeg|bmp)]")) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return;
 			}
 
@@ -128,7 +123,7 @@ public class UploadAspeatJ {
 		} catch (Throwable e) {
 			logger.error("处理错误[{}]", e.getMessage());
 			resultVo.setCustomReason(RespEnum.SysErr.code(), RespEnum.SysErr.cnDesc());
-			ResponseUtils.outData(response, resultVo);
+			outData(response, resultVo);
 			return;
 		}
 	}

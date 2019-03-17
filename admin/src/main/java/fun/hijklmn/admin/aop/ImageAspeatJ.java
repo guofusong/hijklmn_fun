@@ -8,11 +8,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import fun.hijklmn.admin.common.ResponseUtils;
 import fun.hijklmn.admin.common.ResultVO;
 import fun.hijklmn.admin.common.WebGetter;
 import fun.hijklmn.common.constants.RespEnum;
@@ -21,9 +18,7 @@ import fun.hijklmn.model.pojo.Image;
 
 @Aspect
 @Component
-public class ImageAspeatJ {
-
-	private static final Logger logger = LoggerFactory.getLogger(ImageAspeatJ.class);
+public class ImageAspeatJ extends BaseAspectJ{
 
 	@Pointcut("execution(** fun.hijklmn.admin.controller.ImageController.save(..))")
 	public void save() {
@@ -48,7 +43,7 @@ public class ImageAspeatJ {
 			
 			if (StringUtils.isBlank(imgId)) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return null;
 			}
 			
@@ -57,7 +52,7 @@ public class ImageAspeatJ {
 		}catch(Throwable e) {
 			logger.error("处理错误[{}]" , e.getMessage());
 			resultVo.setCustomReason(RespEnum.SysErr.code(), RespEnum.SysErr.cnDesc());
-			ResponseUtils.outData(response, resultVo);
+			outData(response, resultVo);
 		}
 		
 		return null;
@@ -79,14 +74,14 @@ public class ImageAspeatJ {
 			
 			if (StringUtils.isBlank(params)) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return null;
 			}
 
 			Image image = JSONUtils.toBean(params, Image.class);
 			if (image == null || StringUtils.isBlank(image.getAuthor()) || StringUtils.isBlank(image.getImageTag()) || StringUtils.isBlank(image.getImageType()) || StringUtils.isBlank(image.getImageUrl()) || StringUtils.isBlank(image.getSource()) || StringUtils.isBlank(image.getSubTitle()) || StringUtils.isBlank(image.getTitle())) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return null;
 			}
 
@@ -95,7 +90,7 @@ public class ImageAspeatJ {
 		} catch (Throwable e) {
 			logger.error("处理错误[{}]", e.getMessage());
 			resultVo.setCustomReason(RespEnum.SysErr.code(), RespEnum.SysErr.cnDesc());
-			ResponseUtils.outData(response, resultVo);
+			outData(response, resultVo);
 		}
 		
 		return null;

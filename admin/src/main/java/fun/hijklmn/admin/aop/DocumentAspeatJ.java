@@ -8,11 +8,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import fun.hijklmn.admin.common.ResponseUtils;
 import fun.hijklmn.admin.common.ResultVO;
 import fun.hijklmn.admin.common.WebGetter;
 import fun.hijklmn.common.constants.RespEnum;
@@ -21,9 +18,7 @@ import fun.hijklmn.model.pojo.Document;
 
 @Aspect
 @Component
-public class DocumentAspeatJ {
-
-	private static final Logger logger = LoggerFactory.getLogger(DocumentAspeatJ.class);
+public class DocumentAspeatJ extends BaseAspectJ{
 
 	@Pointcut("execution(** fun.hijklmn.admin.controller.DocumentController.save(..))")
 	public void save() {
@@ -54,7 +49,7 @@ public class DocumentAspeatJ {
 			
 			if (StringUtils.isBlank(docId)) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return null;
 			}
 			
@@ -64,7 +59,7 @@ public class DocumentAspeatJ {
 		} catch (Throwable e) {
 			logger.error("系统错误[{}]" , e.getMessage());
 			resultVo.setCustomReason(RespEnum.SysErr.code(), RespEnum.SysErr.cnDesc());
-			ResponseUtils.outData(response, resultVo);
+			outData(response, resultVo);
 		}
 		
 		return null;
@@ -88,7 +83,7 @@ public class DocumentAspeatJ {
 			
 			if (StringUtils.isBlank(title) || StringUtils.isBlank(subTitle)) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return null;
 			}
 			
@@ -97,7 +92,7 @@ public class DocumentAspeatJ {
 		} catch (Throwable e) {
 			logger.error("系统错误[{}]" , e.getMessage());
 			resultVo.setCustomReason(RespEnum.SysErr.code(), RespEnum.SysErr.cnDesc());
-			ResponseUtils.outData(response, resultVo);
+			outData(response, resultVo);
 		}
 		
 		return null;
@@ -120,14 +115,14 @@ public class DocumentAspeatJ {
 			
 			if (StringUtils.isBlank(params)) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return null;
 			}
 
 			Document document = JSONUtils.toBean(params, Document.class);
 			if (document == null || StringUtils.isBlank(document.getTitle()) || StringUtils.isBlank(document.getSubTitle()) || StringUtils.isBlank(document.getAuthor()) || StringUtils.isBlank(document.getSource()) || StringUtils.isBlank(document.getDocumentType())) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return null;
 			}
 
@@ -136,7 +131,7 @@ public class DocumentAspeatJ {
 		} catch (Throwable e) {
 			logger.error("处理错误[{}]", e.getMessage());
 			resultVo.setCustomReason(RespEnum.SysErr.code(), RespEnum.SysErr.cnDesc());
-			ResponseUtils.outData(response, resultVo);
+			outData(response, resultVo);
 		}
 		
 		return null;

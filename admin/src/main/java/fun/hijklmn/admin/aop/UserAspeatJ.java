@@ -8,20 +8,15 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import fun.hijklmn.admin.common.ResponseUtils;
 import fun.hijklmn.admin.common.ResultVO;
 import fun.hijklmn.admin.common.WebGetter;
 import fun.hijklmn.common.constants.RespEnum;
 
 @Aspect
 @Component
-public class UserAspeatJ {
-
-	private final Logger logger = LoggerFactory.getLogger(UserAspeatJ.class);
+public class UserAspeatJ extends BaseAspectJ{
 
 	@Pointcut("execution(** fun.hijklmn.admin.controller.UserController.signin(..))")
 	public void signin() {
@@ -40,7 +35,7 @@ public class UserAspeatJ {
 			String password = WebGetter.getString("password", request);
 			if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
-				ResponseUtils.outData(response, resultVo);
+				outData(response, resultVo);
 				return null;
 			}
 
@@ -49,7 +44,7 @@ public class UserAspeatJ {
 		} catch (Throwable e) {
 			logger.error("处理错误[{}]", e.getMessage());
 			resultVo.setCustomReason(RespEnum.SysErr.code(), RespEnum.SysErr.cnDesc());
-			ResponseUtils.outData(response, resultVo);
+			outData(response, resultVo);
 		}
 		return null;
 
