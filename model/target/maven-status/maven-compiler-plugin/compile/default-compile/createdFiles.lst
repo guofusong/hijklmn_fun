@@ -8,7 +8,10 @@ fun\hijklmn\model\mapper\SysUserMapper.class
 fun\hijklmn\model\pojo\Document.class
 fun\hijklmn\model\service\IMenuService.class
 fun\hijklmn\model\dto\QueryReqDTO.class
+fun\hijklmn\model\pojo\Image.class
 fun\hijklmn\model\mapper\MenuMapper.class
+fun\hijklmn\model\service\impl\ImageServiceImpl.class
+fun\hijklmn\model\dto\ImageQueryDTO.class
 fun\hijklmn\model\service\impl\MenuServiceImpl.class
 fun\hijklmn\model\pojo\SysUser.class
 fun\hijklmn\model\mapper\SoundMapper.class
@@ -17,5 +20,7 @@ fun\hijklmn\model\service\IDocumentService.class
 fun\hijklmn\model\service\ISoundService.class
 fun\hijklmn\model\service\impl\SysUserServiceImpl.class
 fun\hijklmn\model\pojo\Sound.class
+fun\hijklmn\model\service\IImageService.class
 fun\hijklmn\model\dto\SoundQueryDTO.class
 fun\hijklmn\model\mapper\DocumentMapper.class
+fun\hijklmn\model\mapper\ImageMapper.class
