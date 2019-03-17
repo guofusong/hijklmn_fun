@@ -1,7 +1,6 @@
 package fun.hijklmn.admin.filter;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -22,7 +21,6 @@ import fun.hijklmn.admin.common.ResponseUtils;
 import fun.hijklmn.admin.common.ResultVO;
 import fun.hijklmn.admin.common.WebConstants;
 import fun.hijklmn.common.constants.RespEnum;
-import fun.hijklmn.common.utils.JSONUtils;
 import fun.hijklmn.model.pojo.SysUser;
 
 @Order(0)
@@ -33,7 +31,7 @@ public class AuthFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		logger.info("authFilter init . . . ");
+		logger.info("authFilter destroy . . . ");
 	}
 
 	@Override
@@ -59,7 +57,7 @@ public class AuthFilter implements Filter {
 		if (sysUser == null) {
 			if (ResponseUtils.isAjax(req)) {
 				resultVo.setCustomReason(RespEnum.SesExpr.code(), RespEnum.SesExpr.cnDesc());
-				outData(rep, resultVo);
+				ResponseUtils.outData(rep, resultVo);
 				return;
 			} else {
 				rep.sendRedirect("/");
@@ -70,7 +68,7 @@ public class AuthFilter implements Filter {
 			if (StringUtils.isBlank(permissions) || !permissions.contains(requestUrl)) {
 				if (ResponseUtils.isAjax(req)) {
 					resultVo.setCustomReason(RespEnum.PerDeni.code(), RespEnum.PerDeni.cnDesc());
-					outData(rep, resultVo);
+					ResponseUtils.outData(rep, resultVo);
 					return;
 				} else {
 					rep.sendRedirect("/notAllow");
@@ -86,23 +84,6 @@ public class AuthFilter implements Filter {
 	@Override
 	public void init(FilterConfig config) throws ServletException {
 		logger.info("authFilter init . . . ");
-	}
-
-	private static void outData(HttpServletResponse response, ResultVO resultVo) {
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("application/json; charset=utf-8");
-		String json = JSONUtils.toJsonStr(resultVo);
-		PrintWriter out = null;
-		try {
-			out = response.getWriter();
-			out.append(json);
-		} catch (IOException e) {
-			logger.error("返回json错误！[{}]", json);
-		} finally {
-			if (out != null) {
-				out.close();
-			}
-		}
 	}
 
 }
