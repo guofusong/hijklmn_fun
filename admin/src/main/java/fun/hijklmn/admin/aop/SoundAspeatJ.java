@@ -23,10 +23,47 @@ import fun.hijklmn.model.pojo.Sound;
 @Component
 public class SoundAspeatJ {
 
-	private final Logger logger = LoggerFactory.getLogger(SoundAspeatJ.class);
+	private static final Logger logger = LoggerFactory.getLogger(SoundAspeatJ.class);
 
 	@Pointcut("execution(** fun.hijklmn.admin.controller.SoundController.save(..))")
 	public void save() {
+	}
+
+	@Pointcut("execution(** fun.hijklmn.admin.controller.SoundController.delete(..))")
+	public void delete() {
+	}
+	
+	@Around("delete()")
+	public Object checkDelete(ProceedingJoinPoint jp) {
+		
+		final ResultVO resultVo = new ResultVO();
+		final Object[] objs = jp.getArgs();
+		
+		HttpServletRequest request = (HttpServletRequest) objs[0];
+		HttpServletResponse response = (HttpServletResponse) objs[1];
+		
+		try {
+			
+			String souId = WebGetter.getString("souId", request);
+			
+			logger.info("------>删除声音[{}]" , souId);
+			
+			if (StringUtils.isBlank(souId)) {
+				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
+				ResponseUtils.outData(response, resultVo);
+				return null;
+			}
+			
+			return jp.proceed();
+			
+		} catch (Throwable e) {
+			logger.error("系统错误[{}]" , e.getMessage());
+			resultVo.setCustomReason(RespEnum.SysErr.code(), RespEnum.SysErr.cnDesc());
+			ResponseUtils.outData(response, resultVo);
+		}
+		
+		return null;
+		
 	}
 
 	@Around("save()")
@@ -39,6 +76,9 @@ public class SoundAspeatJ {
 
 		try {
 			String params = WebGetter.getString("params", request);
+			
+			logger.info("------>保存声音[{}]" , params);
+			
 			if (StringUtils.isBlank(params)) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
 				ResponseUtils.outData(response, resultVo);
@@ -46,9 +86,7 @@ public class SoundAspeatJ {
 			}
 
 			Sound sound = JSONUtils.toBean(params, Sound.class);
-			if (sound == null || StringUtils.isBlank(sound.getSoundName()) || StringUtils.isBlank(sound.getAuthor())
-					|| StringUtils.isBlank(sound.getSoundType()) || StringUtils.isBlank(sound.getSource())
-					|| StringUtils.isBlank(sound.getSoundUrl())) {
+			if (sound == null || StringUtils.isBlank(sound.getSoundName()) || StringUtils.isBlank(sound.getAuthor()) || StringUtils.isBlank(sound.getSoundType()) || StringUtils.isBlank(sound.getSource()) || StringUtils.isBlank(sound.getSoundUrl())) {
 				resultVo.setCustomReason(RespEnum.InvParam.code(), RespEnum.InvParam.cnDesc());
 				ResponseUtils.outData(response, resultVo);
 				return null;
