@@ -13,7 +13,7 @@ import fun.hijklmn.model.dto.QueryReqDTO;
 import fun.hijklmn.model.pojo.SysUser;
 
 @Controller
-public class IndexController {
+public class IndexController extends BaseController{
 
 	@RequestMapping(value = "/")
 	public String index(HttpServletRequest request, HttpServletResponse response) {

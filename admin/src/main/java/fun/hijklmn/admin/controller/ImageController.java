@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,23 +14,27 @@ import fun.hijklmn.admin.common.ControllerHandler;
 import fun.hijklmn.admin.common.ControllerProxy;
 import fun.hijklmn.admin.common.ResultVO;
 import fun.hijklmn.admin.common.WebGetter;
-import fun.hijklmn.admin.conf.ConstantsConf;
 import fun.hijklmn.common.constants.RespEnum;
 import fun.hijklmn.common.utils.IDGenerateUtils;
 import fun.hijklmn.common.utils.JSONUtils;
 import fun.hijklmn.model.dto.QueryReqDTO;
 import fun.hijklmn.model.pojo.Image;
 import fun.hijklmn.model.pojo.SysUser;
-import fun.hijklmn.model.service.IImageService;
 
+/**
+ * 
+ * tips : 下面的代码用于练习<br>
+ * description : 图片操作 
+ *
+ * @author : guosong
+ * @date : 2019年3月16日
+ * @time : 下午9:40:01
+ * @project_name : admin
+ * @package_name : fun.hijklmn.admin.controller
+ *
+ */
 @Controller
-public class ImageController {
-
-	@Autowired
-	private IImageService imageService;
-
-	@Autowired
-	private ConstantsConf constantsConf;
+public class ImageController extends BaseController{
 
 	@RequestMapping(value = "/image/detail")
 	public String detail(HttpServletRequest request, HttpServletResponse response) {

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,17 +20,9 @@ import fun.hijklmn.common.utils.EncryptionUtils;
 import fun.hijklmn.model.dto.QueryReqDTO;
 import fun.hijklmn.model.pojo.Menu;
 import fun.hijklmn.model.pojo.SysUser;
-import fun.hijklmn.model.service.IMenuService;
-import fun.hijklmn.model.service.ISysUserService;
 
 @Controller
-public class UserController {
-
-	@Autowired
-	private ISysUserService sysUserService;
-
-	@Autowired
-	private IMenuService menuService;
+public class UserController extends BaseController{
 
 	@RequestMapping(value = "/user/signin")
 	public void signin(HttpServletRequest request, HttpServletResponse response) {

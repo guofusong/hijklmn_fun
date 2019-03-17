@@ -7,21 +7,16 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import fun.hijklmn.admin.common.ControllerHandler;
 import fun.hijklmn.admin.common.ControllerProxy;
 import fun.hijklmn.admin.common.ResultVO;
-import fun.hijklmn.admin.conf.ConstantsConf;
 import fun.hijklmn.common.constants.MediaEnum;
 import fun.hijklmn.common.constants.RespEnum;
 import fun.hijklmn.common.dto.MediaDTO;
@@ -32,15 +27,7 @@ import fun.hijklmn.model.dto.QueryReqDTO;
 import fun.hijklmn.model.pojo.SysUser;
 
 @RestController
-public class UploadController {
-
-	private final Logger logger = LoggerFactory.getLogger(UploadController.class);
-
-	@Autowired
-	private RestTemplate restTemplate;
-
-	@Autowired
-	private ConstantsConf constantsConf;
+public class UploadController extends BaseController{
 
 	@RequestMapping(value = "/image/ck/upload")
 	public Map<String, String> ckUploadImage(HttpServletRequest request, HttpServletResponse response,
