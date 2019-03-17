@@ -8,7 +8,7 @@ import fun.hijklmn.model.pojo.SysUser;
 
 public interface ControllerHandler {
 
-	public String handler(HttpServletRequest request, HttpServletResponse response, SysUser sysUser, ResultVO resultVo,
+	String handler(HttpServletRequest request, HttpServletResponse response, SysUser sysUser, ResultVO resultVo,
 			QueryReqDTO queryReqDTO) throws Exception;
 
 }
