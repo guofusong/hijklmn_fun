@@ -3,7 +3,6 @@ package fun.hijklmn.stage.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,17 +12,13 @@ import fun.hijklmn.model.dto.QueryReqDTO;
 import fun.hijklmn.model.dto.QueryRespDTO;
 import fun.hijklmn.model.pojo.Document;
 import fun.hijklmn.model.pojo.SysUser;
-import fun.hijklmn.model.service.IDocumentService;
 import fun.hijklmn.stage.common.ControllerHandler;
 import fun.hijklmn.stage.common.ControllerProxy;
 import fun.hijklmn.stage.common.ResultVO;
 import fun.hijklmn.stage.common.WebGetter;
 
 @Controller
-public class DocumentController {
-
-	@Autowired
-	private IDocumentService documentService;
+public class DocumentController extends BaseController{
 
 	@RequestMapping(value = "/document/view")
 	public String view(HttpServletRequest request, HttpServletResponse response) {

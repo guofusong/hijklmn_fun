@@ -1,5 +1,5 @@
 package fun.hijklmn.stage.controller;
 
-public class BlogController {
+public class BlogController extends BaseController{
 
 }

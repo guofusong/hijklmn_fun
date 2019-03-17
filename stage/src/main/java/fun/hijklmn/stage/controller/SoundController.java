@@ -6,29 +6,22 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import fun.hijklmn.common.utils.JSONUtils;
 import fun.hijklmn.model.dto.QueryReqDTO;
 import fun.hijklmn.model.dto.QueryRespDTO;
 import fun.hijklmn.model.dto.SoundQueryDTO;
 import fun.hijklmn.model.pojo.Sound;
 import fun.hijklmn.model.pojo.SysUser;
-import fun.hijklmn.model.service.ISoundService;
 import fun.hijklmn.stage.common.ControllerHandler;
 import fun.hijklmn.stage.common.ControllerProxy;
 import fun.hijklmn.stage.common.ResultVO;
-import fun.hijklmn.stage.conf.ConstantsConf;
+import fun.hijklmn.stage.common.WebGetter;
 
 @Controller
-public class SoundController {
-
-	@Autowired
-	private ConstantsConf constantsConf;
-
-	@Autowired
-	private ISoundService soundService;
+public class SoundController extends BaseController{
 
 	@RequestMapping(value = "/sound/view")
 	public String view(HttpServletRequest request, HttpServletResponse response) {
@@ -73,6 +66,32 @@ public class SoundController {
 			}
 
 		}, request, response, soundQueryDTO);
+	}
+	
+	@RequestMapping(value = "/sound/detail")
+	public String detail(HttpServletRequest request , HttpServletResponse response) {
+		
+		return ControllerProxy.assemble(new ControllerHandler() {
+
+			@Override
+			public String handler(HttpServletRequest request, HttpServletResponse response, SysUser sysUser,
+					ResultVO resultVo, QueryReqDTO queryReqDTO) throws Exception {
+
+				String souId = WebGetter.getString("souId", request);
+				
+				Sound sound = soundService.getSoundById(souId);
+				
+				request.setAttribute("sound", JSONUtils.toJsonStr(sound));
+				
+				request.setAttribute("imageUrl", constantsConf.getImageRespUrl());
+				
+				request.setAttribute("soundUrl", constantsConf.getSoundRespUrl());
+				
+				return "sound/detail";
+			}
+			
+		}, request, response, null);
+		
 	}
 
 }

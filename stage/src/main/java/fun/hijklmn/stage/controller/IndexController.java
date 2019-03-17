@@ -13,7 +13,7 @@ import fun.hijklmn.stage.common.ControllerProxy;
 import fun.hijklmn.stage.common.ResultVO;
 
 @Controller
-public class IndexController {
+public class IndexController extends BaseController{
 
 	@RequestMapping(value = "/")
 	public String index(HttpServletRequest request, HttpServletResponse response) {
