@@ -14,7 +14,7 @@ import fun.hijklmn.model.service.ISysUserService;
 
 public abstract class BaseController {
 
-	protected static final Logger logger = LoggerFactory.getLogger(BaseController.class);
+	protected final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	protected RestTemplate restTemplate;
