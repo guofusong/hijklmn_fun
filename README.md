@@ -8,6 +8,6 @@
 - back
 - media
 - pom
- -- common
- -- model
+- common
+- model
 - stage
